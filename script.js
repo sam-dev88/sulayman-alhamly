@@ -27,12 +27,14 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
     }
   });
 });
-
+/*--------------------Calendly Popup-----------------*/
 document.querySelectorAll(".open-calendly").forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault(); // prevents default button behavior
     Calendly.initPopupWidget({
-      url: "https://calendly.com/your-calendly-link",
+      url: "https://calendly.com/samiraramo815/30min",
     });
+    return false; // ensures popup works on live site
   });
 });
 
