@@ -41,7 +41,7 @@ html {
 .nav-container {
   max-width: 1200px;
   margin: auto;
-  padding: 0.5rem 1.5rem;
+  padding: 0.3rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,7 +117,7 @@ html {
   }
 
   .nav-links {
-    gap: .5rem;
+    gap: 0.5rem;
     position: absolute;
     top: 100%;
     right: 0;
@@ -455,14 +455,33 @@ p {
 }
 
 #contact {
-  padding: 4rem clamp(1.25rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 5vw, 4rem);
 }
-
+#contact h2 {
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
 .contact-grid {
-  padding: 1rem;
+  border-radius: 10px;
+  background: #f5f5f5;
+  padding: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
+  box-shadow: 0px 2px 20px;
+}
+@media (max-width: 768px) {
+  .contact-grid {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: center;
+    box-shadow: 0px 2px 10px;
+  }
+  #contact {
+    padding: 10px;
+  }
 }
 
 .contact-A,
@@ -485,7 +504,7 @@ textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 12px;
-  border: 2px solid var(--secondary);
+  border: 1px solid var(--accent);
   border-radius: 6px;
 }
 
@@ -495,6 +514,13 @@ textarea {
 
 form .btn {
   width: 100%;
+}
+
+.contact-B .get p {
+  margin-top: 1rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  color: var(--primary);
+
 }
 
 .social-icons a {
@@ -552,10 +578,6 @@ form .btn {
 
 .social-icons a.linkedin:hover {
   box-shadow: 0 0 16px #0a66c2;
-}
-
-.get p {
-  line-height: 2;
 }
 
 footer {
