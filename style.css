@@ -1,3 +1,4 @@
+/* ========== CSS VARIABLES / THEME ========== */
 :root {
   --primary: #111827;
   --secondary: #4b5563;
@@ -6,6 +7,7 @@
   --bg-gold: #ffbd59;
 }
 
+/* ========== RESET & BASE STYLES ========== */
 * {
   margin: 0;
   padding: 0;
@@ -23,6 +25,7 @@ html {
   scroll-behavior: auto;
 }
 
+/* ========== NAVBAR / HEADER ========== */
 .navbar {
   position: sticky;
   top: 0;
@@ -47,6 +50,7 @@ html {
   justify-content: space-between;
 }
 
+/* Navigation Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -72,6 +76,7 @@ html {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Navbar CTA Button */
 .nav-cta {
   background: var(--accent);
   color: #ffffff;
@@ -82,6 +87,7 @@ html {
   transition: all 0.3s ease;
 }
 
+/* ========== MOBILE BURGER MENU ========== */
 .burger {
   display: none;
   flex-direction: column;
@@ -99,6 +105,7 @@ html {
   transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
+/* Burger Animation (Active State) */
 .burger.active .line:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -111,6 +118,7 @@ html {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+/* Mobile Navigation */
 @media (max-width: 768px) {
   .burger {
     display: flex;
@@ -146,12 +154,14 @@ html {
   }
 }
 
+/* Logo */
 .nav-logo {
   width: clamp(50px, 5vw, 180px);
   height: auto;
   border-radius: 3px;
 }
 
+/* ========== GLOBAL SECTIONS & TYPOGRAPHY ========== */
 section,
 header {
   padding: 4rem 1.5rem;
@@ -163,6 +173,7 @@ h3 {
   font-weight: 700;
 }
 
+/* Buttons */
 .btn-primary {
   background: var(--bg-light);
   color: var(--accent);
@@ -188,7 +199,10 @@ h3 {
   font-weight: 600;
   text-decoration: underline;
 }
-
+.btn{
+  width: 100%;
+}
+/* Typing Animation (Hero) */
 .typing {
   display: inline-block;
   white-space: nowrap;
@@ -218,8 +232,9 @@ h3 {
     font-size: clamp(1rem, 6vw, 1.5rem);
   }
 }
-/*--------Calendly------------*/
-/* Button */
+
+/* ========== CALENDLY MODAL ========== */
+/* Calendly Buttons */
 #openCalendarDesktop,
 #openCalendarMobile {
   padding: 5px 12px;
@@ -242,7 +257,7 @@ h3 {
   border-top: 1px solid#222;
 }
 
-/* Modal overlay */
+/* Modal Overlay */
 .modal {
   display: none;
   position: fixed;
@@ -253,14 +268,16 @@ h3 {
   overflow-y: auto;
   background: #555;
 }
+
+/* Calendly Responsive Fix */
 @media (max-width: 768px) {
   .modal .calendly-inline-widget {
-    margin: 10px; /* margin from screen edges */
-    border-radius: 10px; /* optional: rounded edges */
+    margin: 10px;
+    border-radius: 10px;
   }
 }
 
-/* Close button */
+/* Modal Close Button */
 .close {
   position: absolute;
   top: 10px;
@@ -269,7 +286,8 @@ h3 {
   color: darkkhaki;
   cursor: pointer;
 }
-/*-------------------------*/
+
+/* ========== HERO SECTION ========== */
 .hero {
   background: var(--accent);
   display: grid;
@@ -300,6 +318,7 @@ p {
   line-height: 1.6;
 }
 
+/* ========== EPISODES SECTION ========== */
 .episodes {
   padding: 4rem 1.5rem;
   background: #f9fafb;
@@ -322,6 +341,7 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* Episode Card */
 .episode-card {
   background: #ffffff;
   border-radius: 16px;
@@ -358,10 +378,6 @@ p {
   flex-grow: 1;
 }
 
-.episode-btn {
-  background: var(--accent);
-}
-
 .youtube-link {
   display: inline-flex;
   align-items: center;
@@ -381,6 +397,7 @@ p {
   margin-top: 32%;
 }
 
+/* ========== ABOUT SECTION ========== */
 .about {
   padding: 4rem clamp(1.25rem, 5vw, 4rem);
 }
@@ -448,20 +465,29 @@ p {
   }
 }
 
+/* ========== HOW IT WORKS ========== */
 .steps {
   display: grid;
   gap: 1.5rem;
   margin-top: 2rem;
+  background: var(--accent);
+  color: var(--bg-light);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px var(--primary);
 }
 
+/* ========== CONTACT SECTION ========== */
 #contact {
   padding: clamp(1.25rem, 5vw, 4rem);
 }
+
 #contact h2 {
   text-align: center;
   color: var(--accent);
   margin-bottom: 1rem;
 }
+
 .contact-grid {
   border-radius: 10px;
   background: #f5f5f5;
@@ -471,14 +497,13 @@ p {
   align-items: center;
   box-shadow: 0px 2px 20px;
 }
+
 @media (max-width: 768px) {
   .contact-grid {
     padding: 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    align-items: center;
     box-shadow: 0px 2px 10px;
   }
+
   #contact {
     padding: 10px;
   }
@@ -491,10 +516,7 @@ p {
   align-items: center;
 }
 
-.contact-B p strong {
-  font-size: clamp(16px, 1.2vw, 24px);
-}
-
+/* Forms */
 form {
   max-width: 500px;
 }
@@ -507,22 +529,24 @@ textarea {
   border: 1px solid var(--accent);
   border-radius: 6px;
 }
+.sent-message{
+  display: flex;
+  justify-content: center;
+}
 
 #msg {
-  color: #ffbd59;
+  color: var(--primary);
+  margin-top: .8rem;
 }
 
-form .btn {
-  width: 100%;
-}
-
+/* Contact Info */
 .contact-B .get p {
   margin-top: 1rem;
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   color: var(--primary);
-
 }
 
+/* Social Icons */
 .social-icons a {
   border-radius: 10px;
   display: inline-block;
@@ -541,45 +565,26 @@ form .btn {
   box-shadow: 0px 0px 10px var(--primary);
 }
 
+/* Platform-specific Social Styles */
 .social-icons a.youtube {
+  color: red;
   border: 1px solid red;
   box-shadow: 0 0 10px red;
 }
 
-.social-icons a.youtube i {
-  color: red;
-}
-
-.social-icons a.youtube:hover {
-  box-shadow: 0 0 16px red;
-}
-
 .social-icons a.tiktok {
+  color: #000;
   border: 1px solid #000;
   box-shadow: 0 0 10px #000;
 }
 
-.social-icons a.tiktok i {
-  color: #000;
-}
-
-.social-icons a.tiktok:hover {
-  box-shadow: 0 0 16px #000;
-}
-
 .social-icons a.linkedin {
+  color: #0a66c2;
   border: 1px solid #0a66c2;
   box-shadow: 0 0 10px #0a66c2;
 }
 
-.social-icons a.linkedin i {
-  color: #0a66c2;
-}
-
-.social-icons a.linkedin:hover {
-  box-shadow: 0 0 16px #0a66c2;
-}
-
+/* ========== FOOTER ========== */
 footer {
   background: var(--primary);
   color: #fff;
@@ -593,6 +598,7 @@ footer {
   text-decoration: none;
 }
 
+/* ========== DESKTOP ENHANCEMENTS ========== */
 @media (min-width: 768px) {
   .hero {
     grid-template-columns: 1fr 1fr;

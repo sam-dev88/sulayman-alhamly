@@ -1,3 +1,6 @@
+/* =====================================================
+   NAVIGATION / BURGER MENU
+===================================================== */
 const burger = document.querySelector(".burger");
 const navLinks = document.querySelector(".nav-links");
 
@@ -6,6 +9,7 @@ burger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
+/* Close mobile menu when a nav link is clicked */
 document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => {
     burger.classList.remove("active");
@@ -13,12 +17,14 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
+/* Close menu when CTA or nav link is clicked */
 document.querySelectorAll(".nav-links a, .nav-cta").forEach((item) => {
   item.addEventListener("click", () => {
     navLinks.classList.remove("active");
   });
 });
 
+/* Smooth scroll to section on nav click */
 document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", function (e) {
     const target = document.querySelector(this.getAttribute("href"));
@@ -27,7 +33,10 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
     }
   });
 });
-/*--------------------Calendly Popup-----------------*/
+
+/* =====================================================
+   CALENDLY POPUP INTEGRATION
+===================================================== */
 document.querySelectorAll(".open-calendly").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault(); // prevents default button behavior
@@ -38,70 +47,67 @@ document.querySelectorAll(".open-calendly").forEach((btn) => {
   });
 });
 
-const form = document.getElementById("guestForm");
-const successMsg = document.getElementById("formSuccess");
+/* =====================================================
+   CONTACT / GUEST FORM (GOOGLE SHEETS BACKEND)
+===================================================== */
+
+
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxdA6bSYEXA_P6u8RPA4c2hZvuPPf07vWrYyQrSLqv3lzCOj6BRJJKeaV_Z_zMdIKlQYQ/exec";
+
+const form = document.getElementById("contactform");
+const msg = document.getElementById("msg");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  msg.innerHTML = "Sending message...";
 
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec", {
-    method: "POST",
-    body: new FormData(form),
-  })
-    .then(() => {
-      successMsg.style.display = "block";
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then((response) => {
+      if (!response.ok) throw new Error(`Server returned ${response.status}`);
+      msg.innerHTML = "✅ Message sent successfully!";
       form.reset();
+      setTimeout(() => (msg.innerHTML = ""), 3000);
     })
-    .catch(() => {
-      alert("Submission failed. Please try again.");
+    .catch((error) => {
+      console.error("Form submit error:", error);
+      msg.innerHTML = "❌ Failed to send message. Try again later.";
     });
 });
 
-const slider = document.getElementById("testimonialSlider");
-const slides = document.querySelectorAll(".testimonial-card");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
+/* ----------------- ANTI-SPAM ----------------- */
+const formStartTime = Date.now();
 
-let currentIndex = 0;
-let slideWidth = slides[0].clientWidth;
-let isDragging = false;
-let startX = 0;
+document.querySelector("form").addEventListener("submit", function (e) {
+  const honeypot = document.getElementById("company").value;
+  const timeSpent = (Date.now() - formStartTime) / 1000;
 
-const firstClone = slides[0].cloneNode(true);
-const lastClone = slides[slides.length - 1].cloneNode(true);
-slider.appendChild(firstClone);
-slider.insertBefore(lastClone, slides[0]);
-
-let offset = -slideWidth;
-slider.style.transform = `translateX(${offset}px)`;
-
-function updateSlider() {
-  slider.style.transition = "transform 0.5s ease-in-out";
-  slider.style.transform = `translateX(${-(
-    (currentIndex + 1) *
-    slideWidth
-  )}px)`;
-}
-
-slider.addEventListener("transitionend", () => {
-  if (currentIndex === -1) {
-    slider.style.transition = "none";
-    currentIndex = slides.length - 1;
-    slider.style.transform = `translateX(${-(
-      (currentIndex + 1) *
-      slideWidth
-    )}px)`;
+  if (honeypot !== "" || timeSpent < 5) {
+    e.preventDefault();
+    return false;
   }
-  if (currentIndex === slides.length) {
-    slider.style.transition = "none";
-    currentIndex = 0;
-    slider.style.transform = `translateX(${-(
-      (currentIndex + 1) *
-      slideWidth
-    )}px)`;
+
+  const spamWords = [
+    "telegram",
+    "whatsapp",
+    "million messages",
+    "bulk",
+    "automatically generated",
+    "feedback form",
+    "proposal",
+    "send messages",
+  ];
+
+  const msgVal = document.getElementById("message").value.toLowerCase();
+  if (spamWords.some((word) => msgVal.includes(word))) {
+    e.preventDefault();
+    alert("Message blocked.");
+    return false;
   }
 });
 
+
+/* Slider navigation buttons */
 prevBtn.addEventListener("click", () => {
   currentIndex--;
   updateSlider();
@@ -114,58 +120,13 @@ nextBtn.addEventListener("click", () => {
   stopAutoplayTemporarily();
 });
 
-slider.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-  slider.style.transition = "none";
-  stopAutoplayTemporarily();
-});
 
-slider.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  const diff = e.touches[0].clientX - startX;
-  slider.style.transform = `translateX(${
-    -((currentIndex + 1) * slideWidth) + diff
-  }px)`;
-});
 
-slider.addEventListener("touchend", (e) => {
-  isDragging = false;
-  const diff = e.changedTouches[0].clientX - startX;
-  if (diff > 50) currentIndex--;
-  else if (diff < -50) currentIndex++;
-  updateSlider();
-});
-
-let autoplay = setInterval(() => {
-  currentIndex++;
-  updateSlider();
-}, 4000);
-
-function stopAutoplayTemporarily() {
-  clearInterval(autoplay);
-  setTimeout(() => {
-    autoplay = setInterval(() => {
-      currentIndex++;
-      updateSlider();
-    }, 4000);
-  }, 5000);
-}
-
-slider.addEventListener("mouseenter", () => clearInterval(autoplay));
-
-slider.addEventListener("mouseleave", () => {
-  autoplay = setInterval(() => {
-    currentIndex++;
-    updateSlider();
-  }, 4000);
-});
-
+/* =====================================================
+   RESPONSIVE HANDLING
+===================================================== */
 window.addEventListener("resize", () => {
   slideWidth = slides[0].clientWidth;
   slider.style.transition = "none";
-  slider.style.transform = `translateX(${-(
-    (currentIndex + 1) *
-    slideWidth
-  )}px)`;
+  slider.style.transform = `translateX(${-( (currentIndex + 1) * slideWidth )}px)`;
 });
