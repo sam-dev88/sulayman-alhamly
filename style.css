@@ -145,7 +145,7 @@ html {
     opacity: 0;
     transition: opacity 0.3s ease;
    
-   border-bottom: 2px solid var(--bg-gold);
+   border-bottom: 1px solid var(--accent);
    width: 90%;
   }
   .nav-links a{
@@ -353,7 +353,7 @@ p {
   background: #ffffff;
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 5px var(--accent);
   display: flex;
   flex-direction: column;
 }
@@ -403,6 +403,10 @@ p {
 .eng {
   margin-top: 32%;
 }
+.how-it-works h2{
+  color: var(--accent);
+  text-align: center;
+}
 
 /* ========== ABOUT SECTION ========== */
 .about {
@@ -446,6 +450,9 @@ p {
 
 .about-content {
   text-align: center;
+}
+.about-content p{
+  line-height: 1.4;
 }
 
 .about-content h2 {
