@@ -240,28 +240,8 @@ h3 {
 }
 
 /* ========== CALENDLY MODAL ========== */
-//* Calendly Buttons */
-#openCalendarDesktop,
-#openCalendarMobile {
-  padding: 5px 12px;
-  border-bottom: 1px solid #222;
-  background-color: blue;
-  color: #222;
-  font-weight: bold;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: clamp(15px, 0.9vw, 24px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
+/* Calendly Buttons */
 
-#openCalendarDesktop:hover,
-#openCalendarMobile:hover {
-  background: #222;
-  color: #ffbd59;
-  transform: translateY(-2px);
-  box-shadow: 0px 2px 13px #ffbd59;
-  border-top: 1px solid #222;
-}
 
 /* Modal Overlay (NO SIZE CHANGE) */
 .modal {
@@ -294,7 +274,9 @@ h3 {
   cursor: pointer;
   z-index: 21000;
 }
-
+.calendly-inline-widge{
+  padding: 20px;
+}
 /* ========== HERO SECTION ========== */
 .hero {
   background: var(--accent);

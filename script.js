@@ -41,7 +41,8 @@ document.querySelectorAll(".open-calendly").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     Calendly.initPopupWidget({
-      url: "https://calendly.com/samiraramo815/30min?background_color=0761E2&text_color=ffffff&primary_color=1a1a1a",
+      url: "https://calendly.com/samiraramo815/30min?background_color=0761E2&text_color=ffffff&primary_color=1a1a1a"
+     
     });
     return false;
   });
