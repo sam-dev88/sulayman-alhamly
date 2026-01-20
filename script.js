@@ -39,18 +39,17 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
 ===================================================== */
 document.querySelectorAll(".open-calendly").forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    e.preventDefault(); // prevents default button behavior
+    e.preventDefault();
     Calendly.initPopupWidget({
-      url: "https://calendly.com/samiraramo815/30min",
+      url: "https://calendly.com/samiraramo815/30min?background_color=0761E2&text_color=ffffff&primary_color=1a1a1a",
     });
-    return false; // ensures popup works on live site
+    return false;
   });
 });
 
 /* =====================================================
    CONTACT / GUEST FORM (GOOGLE SHEETS BACKEND)
 ===================================================== */
-
 
 const scriptURL =
   "https://script.google.com/macros/s/AKfycbxdA6bSYEXA_P6u8RPA4c2hZvuPPf07vWrYyQrSLqv3lzCOj6BRJJKeaV_Z_zMdIKlQYQ/exec";
@@ -106,7 +105,6 @@ document.querySelector("form").addEventListener("submit", function (e) {
   }
 });
 
-
 /* Slider navigation buttons */
 prevBtn.addEventListener("click", () => {
   currentIndex--;
@@ -120,13 +118,14 @@ nextBtn.addEventListener("click", () => {
   stopAutoplayTemporarily();
 });
 
-
-
 /* =====================================================
    RESPONSIVE HANDLING
 ===================================================== */
 window.addEventListener("resize", () => {
   slideWidth = slides[0].clientWidth;
   slider.style.transition = "none";
-  slider.style.transform = `translateX(${-( (currentIndex + 1) * slideWidth )}px)`;
+  slider.style.transform = `translateX(${-(
+    (currentIndex + 1) *
+    slideWidth
+  )}px)`;
 });

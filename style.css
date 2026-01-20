@@ -134,9 +134,8 @@ html {
     flex-direction: column;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.6s ease-in-out;
     border-radius: 0px 0px 0px 10px;
-   
   }
 
   .nav-links li {
@@ -144,11 +143,11 @@ html {
     padding: 0.5rem 1rem;
     opacity: 0;
     transition: opacity 0.3s ease;
-   
-   border-bottom: 1px solid var(--accent);
-   width: 90%;
+
+    border-bottom: 1px solid var(--accent);
+    width: 90%;
   }
-  .nav-links a{
+  .nav-links a {
     border: none;
   }
 
@@ -206,7 +205,7 @@ h3 {
   font-weight: 600;
   text-decoration: underline;
 }
-.btn{
+.btn {
   width: 100%;
 }
 /* Typing Animation (Hero) */
@@ -241,12 +240,12 @@ h3 {
 }
 
 /* ========== CALENDLY MODAL ========== */
-/* Calendly Buttons */
+//* Calendly Buttons */
 #openCalendarDesktop,
 #openCalendarMobile {
   padding: 5px 12px;
   border-bottom: 1px solid #222;
-  background-color: #ffbd59;
+  background-color: blue;
   color: #222;
   font-weight: bold;
   border-radius: 7px;
@@ -261,10 +260,10 @@ h3 {
   color: #ffbd59;
   transform: translateY(-2px);
   box-shadow: 0px 2px 13px #ffbd59;
-  border-top: 1px solid#222;
+  border-top: 1px solid #222;
 }
 
-/* Modal Overlay */
+/* Modal Overlay (NO SIZE CHANGE) */
 .modal {
   display: none;
   position: fixed;
@@ -272,11 +271,12 @@ h3 {
   background: rgba(0, 0, 0, 0.85);
   z-index: 20000;
   pointer-events: auto;
-  overflow-y: auto;
-  background: #555;
+
+  /* center only */
+  text-align: center;
 }
 
-/* Calendly Responsive Fix */
+/* Calendly Responsive */
 @media (max-width: 768px) {
   .modal .calendly-inline-widget {
     margin: 10px;
@@ -286,12 +286,13 @@ h3 {
 
 /* Modal Close Button */
 .close {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 16px;
   font-size: 30px;
   color: darkkhaki;
   cursor: pointer;
+  z-index: 21000;
 }
 
 /* ========== HERO SECTION ========== */
@@ -403,7 +404,7 @@ p {
 .eng {
   margin-top: 32%;
 }
-.how-it-works h2{
+.how-it-works h2 {
   color: var(--accent);
   text-align: center;
 }
@@ -451,7 +452,7 @@ p {
 .about-content {
   text-align: center;
 }
-.about-content p{
+.about-content p {
   line-height: 1.4;
 }
 
@@ -543,14 +544,14 @@ textarea {
   border: 1px solid var(--accent);
   border-radius: 6px;
 }
-.sent-message{
+.sent-message {
   display: flex;
   justify-content: center;
 }
 
 #msg {
   color: var(--primary);
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 
 /* Contact Info */
@@ -561,11 +562,11 @@ textarea {
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   color: var(--primary);
 }
-@media (max-width: 768px){
-  .get{
-  width: 100%;
-  padding: 5px;
-}
+@media (max-width: 768px) {
+  .get {
+    width: 100%;
+    padding: 5px;
+  }
 }
 
 /* Social Icons */
