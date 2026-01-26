@@ -2,7 +2,7 @@
 :root {
   --primary: #111827;
   --secondary: #4b5563;
-  --accent: #2563eb;
+  --accent: #064e3b;
   --bg-light: #f9fafb;
   --bg-gold: #ffbd59;
 }
@@ -61,7 +61,7 @@ html {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--primary);
+  color: var(--accent);
   font-weight: 600;
   border-bottom: 1.5px solid var(--accent);
   padding: 5px 15px;
@@ -214,7 +214,7 @@ h3 {
   white-space: nowrap;
   overflow: hidden;
   font-size: clamp(1.2rem, 5vw, 2rem);
-  color: #ffbd59;
+  color: var(--bg-gold);
   width: 0;
   animation: typingAnim 6s linear infinite;
 }
@@ -279,7 +279,10 @@ h3 {
 }
 /* ========== HERO SECTION ========== */
 .hero {
-  background: var(--accent);
+  background-image: url(photos/hero-background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -307,6 +310,8 @@ h3 {
 p {
   line-height: 1.6;
 }
+
+
 
 /* ========== EPISODES SECTION ========== */
 .episodes {
@@ -408,6 +413,8 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  box-shadow: 0px 2px 10px var(--accent);
+  padding: 1rem;
 }
 
 .about-images figure {
@@ -557,7 +564,7 @@ textarea {
   display: inline-block;
   font-size: 20px;
   box-shadow: 0px 0px 10px var(--bg-light);
-  color: var(--primary);
+  color: var(--bg-gold);
   margin: 0 0.5rem;
   text-decoration: none;
   transition: transform 0.6s ease, color 0.3s ease;
