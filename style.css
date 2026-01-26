@@ -291,11 +291,14 @@ h3 {
   color: var(--bg-light);
 }
 
+
 @media (max-width: 768px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
+    background-image: url(photos/mobile-hero.jpg);
   }
+  
 }
 
 .hero-image img {
@@ -605,7 +608,7 @@ footer {
 }
 
 .footer-links a {
-  color: #fff;
+  color: var(--bg-gold);
   margin: 0 0.5rem;
   text-decoration: none;
 }
