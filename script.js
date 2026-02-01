@@ -1,58 +1,77 @@
-/* =====================================================
-   NAVIGATION / BURGER MENU
-===================================================== */
-const burger = document.querySelector(".burger");
-const navLinks = document.querySelector(".nav-links");
-
-burger.addEventListener("click", () => {
-  burger.classList.toggle("active");
-  navLinks.classList.toggle("active");
-});
-
-/* Close mobile menu when a nav link is clicked */
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    burger.classList.remove("active");
-    navLinks.classList.remove("active");
-  });
-});
-
-/* Close menu when CTA or nav link is clicked */
-document.querySelectorAll(".nav-links a, .nav-cta").forEach((item) => {
-  item.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-  });
-});
-
-/* Smooth scroll to section on nav click */
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({ behavior: "auto" });
+/*-- ===== JS: Smooth Scroll for Hero Buttons ===== --*/
+document.querySelectorAll('.hero .btn, .hero-btn .btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.getAttribute('data-target');
+    const target = document.querySelector(targetId);
+    if(target){
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });
 
-/* =====================================================
-   CALENDLY POPUP INTEGRATION
-===================================================== */
-document.querySelectorAll(".open-calendly").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    Calendly.initPopupWidget({
-      url: "https://calendly.com/samiraramo815/30min?background_color=222222&text_color=ffffff&primary_color=539AFF",
-    });
-    return false;
+/* ------------- Force Hero to Show on Load ------------- */
+window.addEventListener("load", () => {
+  const hero = document.querySelector('.hero.card.hidden');
+  if (hero) hero.classList.add('show');
+});
+
+/* -------------- Smooth Popup Scroll -------------- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+/* ----------------- BURGER & MOBILE MENU ----------*/
+const burger = document.querySelector(".burger");
+const mobileMenu = document.querySelector(".nav-links");
+const mobileLinks = document.querySelectorAll(".nav-links li");
+
+burger.addEventListener("click", () => {
+  mobileMenu.classList.toggle("active");
+  burger.classList.toggle("toggle");
+});
+
+mobileLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("active");
+    burger.classList.remove("toggle");
   });
 });
 
-/* =====================================================
-   CONTACT / GUEST FORM (GOOGLE SHEETS BACKEND)
-===================================================== */
+/*--------- Smooth Scroll for Navbar Links -----*/
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    const start = window.scrollY;
+    const end = target.offsetTop;
+    const duration = 1500;
+    const startTime = performance.now();
 
+    function animate(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
+      window.scrollTo(0, start + (end - start) * ease);
+
+      if (progress < 1) requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  });
+});
+
+/* ----------------- CONTACT FORM ----------------- */
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycbxdA6bSYEXA_P6u8RPA4c2hZvuPPf07vWrYyQrSLqv3lzCOj6BRJJKeaV_Z_zMdIKlQYQ/exec";
+"https://script.google.com/macros/s/AKfycbwXHR-uxUvZ8KhpMlsKopcJf5kTozhLfj-QJO2d7007gfaMrsFRg2ZWCHap8oDxO7_oJg/exec";
 
 const form = document.getElementById("contactform");
 const msg = document.getElementById("msg");
@@ -97,35 +116,10 @@ document.querySelector("form").addEventListener("submit", function (e) {
     "send messages",
   ];
 
-  const msgVal = document.getElementById("message").value.toLowerCase();
+  const msgVal = document.getElementById("message")?.value.toLowerCase() || '';
   if (spamWords.some((word) => msgVal.includes(word))) {
     e.preventDefault();
     alert("Message blocked.");
     return false;
   }
-});
-
-/* Slider navigation buttons */
-prevBtn.addEventListener("click", () => {
-  currentIndex--;
-  updateSlider();
-  stopAutoplayTemporarily();
-});
-
-nextBtn.addEventListener("click", () => {
-  currentIndex++;
-  updateSlider();
-  stopAutoplayTemporarily();
-});
-
-/* =====================================================
-   RESPONSIVE HANDLING
-===================================================== */
-window.addEventListener("resize", () => {
-  slideWidth = slides[0].clientWidth;
-  slider.style.transition = "none";
-  slider.style.transform = `translateX(${-(
-    (currentIndex + 1) *
-    slideWidth
-  )}px)`;
 });
