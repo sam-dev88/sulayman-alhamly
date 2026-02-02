@@ -647,3 +647,27 @@ footer {
 }
 
 
+/* ===============================
+   CALENDLY VISIBILITY HOTFIX
+   (NO DESIGN CHANGE)
+================================ */
+
+/* Ensure modal allows full iframe height */
+.modal {
+  overflow-y: auto;
+}
+
+/* Fix Calendly iframe height issue */
+.modal iframe,
+.modal .calendly-inline-widget {
+  height: 100vh !important;
+  min-height: 600px !important;
+}
+
+/* Mobile fix: prevent header-only view */
+@media (max-width: 768px) {
+  .modal iframe,
+  .modal .calendly-inline-widget {
+    height: 90vh !important;
+  }
+}
